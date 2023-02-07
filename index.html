@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch-a-Sketch</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <h1>Etch-a-Sketch</h1>
+      <div id="grid-container">
+        <div id="grid-controls">
+          <div class="grid-control">
+            <div>Paint Color</div>
+            <input type="color" name="" id="paint-color-picker" />
+          </div>
+          <div class="grid-control">
+            <div>Grid Color</div>
+            <input type="color" name="" id="grid-color-picker" />
+          </div>
+          <div class="grid-control">
+            <button id="erase" class="block">Erase</button>
+          </div>
+          <div class="grid-control">
+            <button id="toggle-rainbow-mode" class="block">Rainbow Mode</button>
+          </div>
+          <div class="grid-control">
+            <button id="toggle-shade-mode" class="block">Shade Mode</button>
+          </div>
+          <div class="grid-control">
+            <button id="erase-grid" class="block">Erase Grid</button>
+          </div>
+          <div class="grid-control">
+            <button id="toggle-gridlines" class="block">
+              Toggle Gridlines
+            </button>
+          </div>
+          <div class="grid-control">
+            <div id="current-grid-size"></div>
+            <input type="range" name="" id="grid-sizer" />
+          </div>
+        </div>
+        <div id="grid-wrapper">
+          <div id="grid"></div>
+        </div>
+      </div>
+    </main>
+    <footer>© Carlin Mitchell <span id="current-year"></span></footer>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
+
+<!-- <input type="color" name="" id="body-color-picker" /> -->
