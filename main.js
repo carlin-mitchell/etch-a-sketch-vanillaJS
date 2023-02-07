@@ -150,7 +150,7 @@ function toggleRainbowMode(stateStr) {
       return;
     }
     case "toggle": {
-      rainbowModeEnabled ? toggleRainbowMode("off") : toggleRainbowMode("on");
+      toggleRainbowMode(rainbowModeEnabled ? "off" : "on");
       return;
     }
   }
@@ -178,7 +178,7 @@ function toggleShadeMode(stateStr) {
       return;
     }
     case "toggle": {
-      shadeModeEnabled ? toggleShadeMode("off") : toggleShadeMode("on");
+      toggleShadeMode(shadeModeEnabled ? "off" : "on");
       return;
     }
   }
