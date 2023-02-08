@@ -29,7 +29,8 @@ export function getValuesFromRgbStr(rgbStr) {
 
 export function rgbStrToFullHex(rgbStr) {
   const { r, g, b } = getValuesFromRgbStr(rgbStr);
-  return `#${valueToPaddedHex(r)}${valueToPaddedHex(g)}${valueToPaddedHex(b)}`;
+  const [hexR, hexG, hexB] = [r, g, b].map((val) => valueToPaddedHex(val));
+  return `#${hexR}${hexG}${hexB}`;
 }
 
 /**
