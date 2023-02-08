@@ -35,7 +35,7 @@ eraseBtn.onclick = () => setPaintColorToErase();
 eraseGridBtn.onclick = () => eraseFullGrid();
 gridColorPicker.oninput = (event) => setFullGridColor(event);
 gridSizePicker.oninput = (event) => setGridSize(event);
-paintColorPicker.oninput = (event) => updatePaintColorFromPicker(event);
+paintColorPicker.oninput = (event) => setPaintColorFromPicker(event);
 toggleGridlinesBtn.onclick = () => toggleGridLines();
 toggleRainbowModeBtn.onclick = () => toggleRainbowMode("toggle");
 toggleShadeModeBtn.onclick = () => toggleShadeMode("toggle");
@@ -85,7 +85,7 @@ function initializeAppState() {
   gridSizePicker.value = currentGridSize;
   currentYear.innerText = " " + new Date().getFullYear();
   generateGrid(currentGridSize);
-  updateGridSizeDisplay(currentGridSize);
+  setGridSizeDisplay(currentGridSize);
 }
 
 function paintSquare(event) {
@@ -115,7 +115,17 @@ function setGridSize(event) {
   currentGridSize = event.target.value;
   grid.replaceChildren();
   generateGrid(currentGridSize);
-  updateGridSizeDisplay(currentGridSize);
+  setGridSizeDisplay(currentGridSize);
+}
+
+function setGridSizeDisplay(size) {
+  const display = `${size} x ${size}`;
+  gridSizeValue.innerText = display;
+}
+
+function setPaintColorFromPicker(event) {
+  currentPaintColor = hexToRgbStr(event.target.value);
+  toggleRainbowMode("off");
 }
 
 function setPaintColorToErase() {
@@ -182,14 +192,4 @@ function toggleShadeMode(stateStr) {
       return;
     }
   }
-}
-
-function updateGridSizeDisplay(size) {
-  const display = `${size} x ${size}`;
-  gridSizeValue.innerText = display;
-}
-
-function updatePaintColorFromPicker(event) {
-  currentPaintColor = hexToRgbStr(event.target.value);
-  toggleRainbowMode("off");
 }

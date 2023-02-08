@@ -32,7 +32,7 @@ footer {
 }
 
 footer > #current-year {
-  margin-left: 0.25rem;
+  margin-left: 0.3rem;
 }
 
 h1 {
@@ -44,6 +44,11 @@ h1 {
 header {
   flex-shrink: 0;
   height: 3rem;
+}
+
+#github-link-img {
+  margin-left: 0.3rem;
+  width: 1.5rem;
 }
 
 #grid {
