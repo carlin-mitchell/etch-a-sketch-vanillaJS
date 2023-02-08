@@ -1,4 +1,4 @@
-//########################## EXPORTED UTILS ############################
+//######################### EXPORTED UTILS ###########################
 export function hexToRgbStr(hex) {
   if (hex.length === 4) {
     hex = shortHexToFullHex(hex);
@@ -64,7 +64,7 @@ export function shadeRgbStrByFactor(rgbStr, factor) {
   return `rgb(${newR}, ${newG}, ${newB})`;
 }
 
-//######################## NON EXPORTED UTILS ##########################
+//####################### NON EXPORTED UTILS #########################
 /**
  *
  * @param {Number} min
