@@ -135,7 +135,7 @@ function setPaintColorToErase() {
 }
 
 function toggleGridLines() {
-  const gridSquares = document.querySelectorAll(".grid-item");
+  const gridSquares = getAllGridSquares();
   if (gridLinesVisible) {
     gridSquares.forEach((square) => square.classList.add("borderless"));
     gridLinesVisible = false;
