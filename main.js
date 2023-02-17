@@ -17,6 +17,7 @@ let gridLinesVisible = true;
 let leftMouseBtnDown = false;
 let rainbowModeEnabled = false;
 let shadeModeEnabled = false;
+let shiftLeftDown = false;
 
 const body = document.body;
 const currentYear = document.querySelector("#current-year");
@@ -27,6 +28,7 @@ const gridColorPicker = document.querySelector("#grid-color-picker");
 const gridSizePicker = document.querySelector("#grid-sizer");
 const gridSizeValue = document.querySelector("#current-grid-size");
 const paintColorPicker = document.querySelector("#paint-color-picker");
+const shadeModeMsg = document.querySelector("#shade-mode-msg");
 const toggleGridlinesBtn = document.querySelector("#toggle-gridlines");
 const toggleRainbowModeBtn = document.querySelector("#toggle-rainbow-mode");
 const toggleShadeModeBtn = document.querySelector("#toggle-shade-mode");
@@ -42,6 +44,8 @@ toggleShadeModeBtn.onclick = () => toggleShadeMode("toggle");
 window.onmousedown = () => (leftMouseBtnDown = true);
 window.onmouseup = () => (leftMouseBtnDown = false);
 window.onload = () => initializeAppState();
+window.onkeydown = (event) => handleShiftLeftDown(event);
+window.onkeyup = (event) => handleShiftLeftUp(event);
 
 function disableElements(elementsArr) {
   elementsArr.forEach((element) => (element.disabled = true));
@@ -76,6 +80,26 @@ function generateGrid(size) {
   }
 }
 
+function handleShiftLeftDown(event) {
+  if (event.keyCode === 16) {
+    shiftLeftDown = true;
+  }
+  if (shadeModeEnabled) {
+    toggleShadeModeBtn.classList.add("shade-mode-active-reversed");
+    shadeModeMsg.textContent = "Release Shift to Darken";
+  }
+}
+
+function handleShiftLeftUp(event) {
+  if (event.keyCode === 16) {
+    shiftLeftDown = false;
+  }
+  if (shadeModeEnabled) {
+    toggleShadeModeBtn.classList.remove("shade-mode-active-reversed");
+    shadeModeMsg.textContent = "Hold Shift to Lighten";
+  }
+}
+
 function initializeAppState() {
   body.style.backgroundColor = bodyBackgroundColor;
   gridColorPicker.value = rgbStrToFullHex(currentGridBackgroundColor);
@@ -92,13 +116,13 @@ function paintSquare(event) {
   if (event.type === "mousedown" || leftMouseBtnDown) {
     if (shadeModeEnabled) {
       const currentSquareBgColor = this.style.backgroundColor;
-      currentPaintColor = shadeRgbStrByFactor(currentSquareBgColor, 0.9);
+      const factor = shiftLeftDown ? 1.1 : 0.9;
+      currentPaintColor = shadeRgbStrByFactor(currentSquareBgColor, factor);
     } else if (rainbowModeEnabled) {
       currentPaintColor = getRandomRgbStr();
     } else {
       currentPaintColor = hexToRgbStr(paintColorPicker.value);
     }
-
     this.style.backgroundColor = currentPaintColor;
   }
 }
@@ -172,18 +196,21 @@ function toggleShadeMode(stateStr) {
     gridColorPicker,
     eraseBtn,
     toggleRainbowModeBtn,
+    eraseGridBtn,
   ];
 
   switch (stateStr) {
     case "on": {
       shadeModeEnabled = true;
       toggleShadeModeBtn.classList.add("shade-mode-active");
+      shadeModeMsg.textContent = "Hold Shift to Lighten";
       disableElements(affectedElements);
       return;
     }
     case "off": {
       shadeModeEnabled = false;
       toggleShadeModeBtn.classList.remove("shade-mode-active");
+      shadeModeMsg.textContent = "";
       enableElements(affectedElements);
       return;
     }

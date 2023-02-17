@@ -69,6 +69,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   padding-right: 10px;
+  width: 175px;
 }
 
 .grid-control {
@@ -131,8 +132,16 @@ header {
 
 .shade-mode-active {
   background: linear-gradient(
-    90deg,
-    rgb(215, 212, 212) 0%,
-    rgba(100, 100, 100, 1) 100%
+    85deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(107, 106, 106, 0.5) 100%
+  );
+}
+
+.shade-mode-active-reversed {
+  background: linear-gradient(
+    85deg,
+    rgba(107, 106, 106, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
   );
 }
