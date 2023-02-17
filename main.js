@@ -209,7 +209,11 @@ function toggleShadeMode(stateStr) {
     }
     case "off": {
       shadeModeEnabled = false;
-      toggleShadeModeBtn.classList.remove("shade-mode-active");
+      shiftLeftDown = false;
+      toggleShadeModeBtn.classList.remove(
+        "shade-mode-active",
+        "shade-mode-active-reversed"
+      );
       shadeModeMsg.textContent = "";
       enableElements(affectedElements);
       return;
