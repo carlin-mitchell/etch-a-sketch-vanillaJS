@@ -41,11 +41,11 @@ paintColorPicker.oninput = (event) => setPaintColorFromPicker(event);
 toggleGridlinesBtn.onclick = () => toggleGridLines();
 toggleRainbowModeBtn.onclick = () => toggleRainbowMode("toggle");
 toggleShadeModeBtn.onclick = () => toggleShadeMode("toggle");
+window.onkeydown = (event) => handleShiftLeftDown(event);
+window.onkeyup = (event) => handleShiftLeftUp(event);
 window.onmousedown = () => (leftMouseBtnDown = true);
 window.onmouseup = () => (leftMouseBtnDown = false);
 window.onload = () => initializeAppState();
-window.onkeydown = (event) => handleShiftLeftDown(event);
-window.onkeyup = (event) => handleShiftLeftUp(event);
 
 function disableElements(elementsArr) {
   elementsArr.forEach((element) => (element.disabled = true));
@@ -113,6 +113,9 @@ function initializeAppState() {
 }
 
 function paintSquare(event) {
+  // the event fires on mousedown or mouseover
+  // only paint a square on mousedown or on
+  // mouseover when leftMouseButton is down too
   if (event.type === "mousedown" || leftMouseBtnDown) {
     if (shadeModeEnabled) {
       const currentSquareBgColor = this.style.backgroundColor;
