@@ -56,13 +56,16 @@ export function shadeRgbStrByFactor(rgbStr, factor) {
   const [newR, newG, newB] = [r, g, b].map((val) => applyFactor(val));
 
   function applyFactor(value) {
-    let newVal = value * factor;
+    let newVal = value + factor;
     newVal = newVal < 0 ? 0 : newVal;
     newVal = newVal > 255 ? 255 : newVal;
-    return parseInt(newVal);
+
+    return newVal;
   }
 
-  return `rgb(${newR}, ${newG}, ${newB})`;
+  const newRgbStr = `rgb(${newR}, ${newG}, ${newB})`;
+
+  return newRgbStr;
 }
 
 //####################### NON EXPORTED UTILS #########################

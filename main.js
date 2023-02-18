@@ -116,7 +116,8 @@ function paintSquare(event) {
   if (event.type === "mousedown" || leftMouseBtnDown) {
     if (shadeModeEnabled) {
       const currentSquareBgColor = this.style.backgroundColor;
-      const factor = shiftLeftDown ? 1.1 : 0.9;
+      const factorIncrement = 15;
+      const factor = shiftLeftDown ? factorIncrement : -factorIncrement;
       currentPaintColor = shadeRgbStrByFactor(currentSquareBgColor, factor);
     } else if (rainbowModeEnabled) {
       currentPaintColor = getRandomRgbStr();
